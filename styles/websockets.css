@@ -1,0 +1,54 @@
+.center {
+    text-align: center;
+}
+
+figure.center > img {
+    width: 60%;
+}
+
+@media screen and (max-width: 450px) {
+    figure.center > img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    figcaption {
+        font-size: small;
+    }
+}
+
+/* 
+article {
+    overflow: auto;
+}
+
+figure {
+    text-align: center;
+    margin: 0px;
+}
+
+.right {
+    float: right;
+    margin-left: 20px;
+}
+
+.left {
+    float: left;
+    margin-right: 20px;
+}
+
+figure > img {
+    width: 500px;
+}
+
+@media screen and (max-width:420px) {
+   
+    figure > img {
+        width: 200px;
+    }
+
+    figcaption {
+        font-size: small;
+    }
+} */

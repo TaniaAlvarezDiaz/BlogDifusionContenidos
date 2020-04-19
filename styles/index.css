@@ -1,0 +1,68 @@
+#content {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#aside_index {
+    background-color: #F7F9F9;
+}
+
+#aside_index > section {
+    margin: 0 10px;
+}
+
+.url {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.url{
+    color: deepskyblue;
+    text-decoration: none;
+}
+
+.url:active, .url:hover {
+    color: blue;
+}
+
+/* img {
+    max-width: 80%;
+} */
+
+p {
+    text-align: justify;
+}
+
+figure {
+    text-align: center;
+}
+
+figure > img {
+    max-width: 80%;
+}
+
+#cangas_images {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+#left_img {
+    margin-right: 20px;
+}
+
+#right_img {
+    align-self: center;
+    margin-left: 0px;
+}
+
+@media screen and (max-width:420px) {
+   
+    #left_img {
+        margin-left: 20px;
+    }
+    
+    #right_img {
+        margin-right: 20px;
+    }
+}

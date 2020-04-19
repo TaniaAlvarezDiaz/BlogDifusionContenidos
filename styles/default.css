@@ -1,0 +1,105 @@
+html {
+    max-width: 80em;
+    margin:0 auto;
+}
+
+#wrapper {
+    font-family: 'Source Sans Pro', serif;
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "navigation"
+        "content"
+        "footer";
+    text-align: justify;
+}
+
+#header {
+    background-color: #004961;
+    color: white;
+    text-align: center;
+    grid-area: header;
+}
+
+#header > h1 {
+    font-size: 100%;
+}
+
+#navigation {
+    background-color: gainsboro;
+    grid-area: navigation;
+    padding: 10px;
+    text-align: center;
+}
+
+#navigation > a {
+    padding: 5px;
+    font-size: 100%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#navigation > a:link {
+    color: black;
+}
+
+#navigation > a:visited {
+    color: black;
+}
+
+#navigation > a:hover, a:active{
+    color: #004961;
+}
+
+#navigation > a.selected {
+    background-color: #004961;
+    color: white;
+}
+
+#footer {
+    background-color: #004961;
+    grid-area: footer;
+    padding: 5px;
+    padding-top: 10px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+}
+
+#content a {
+    text-decoration: none;
+    color: #004961;
+}
+
+#content h2 {
+    text-align: center;
+}
+
+#content h1, h2, h3, h4, figcaption {
+    color: #004961;
+}
+
+#footer > a {
+    color: white;
+    text-decoration: none;
+}
+
+#footer > a:hover, a:active {
+    color: #DCDCDC;
+}
+
+#footer > p {
+    text-align: center;
+}
+
+@media screen and (max-width:350px) {
+
+    #navigation > a {
+        font-size: 90%;
+    }
+
+    #footer {
+        font-size: small;
+    }
+} 
+
