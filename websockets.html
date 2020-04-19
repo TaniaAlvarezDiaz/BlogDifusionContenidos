@@ -51,28 +51,26 @@
                         </p>
                         <p>En cuanto a las variables, se guardan los usuarios que se conectan al servidor, así como las figuras que éstos crean en el canvas.</p>
                         <p>Respecto a las funciones, a continuación se explican las que se consideran más importantes.</p>
-                        <p>La función <b>incoming</b> se ejecuta cuando el servidor recibe un mensaje de un cliente.
-                            En el caso de que llegue una figura, la guarda en la lista de figuras
-                            <pre>
-                                <code>
-                                    function incoming (message) {
-                                        console.log('Message received: %s', message);
-                                        if (isJson(message)) {
-                                            //Contains the data of the created figure
-                                            var obj = JSON.parse(message);
-                                            //Add figure to list
-                                            figureList.push(obj);
-                                    
-                                            wss.broadcast = broadcast(createObjectToSend(false), false, this);
-                                        }
-                                        //Plain message, not object. In this case, "connection open".
-                                        else {
-                                            wss.broadcast = broadcast(createObjectToSend(true), true, this);
-                                        }
-                                    }
-                                </code>
-                            </pre>
+                        <p>La función <b>incoming</b> se ejecuta cuando el servidor recibe un mensaje de un cliente. En ella, se comprueba el tipo de mensaje que llega (plano o JSON).</br>
+                            En el caso de que llegue un objeto JSON (una figura), se guarda en la lista de figuras.
                         </p>
+                        <p>
+                            La función <b>broadcast</b> es llamada por la función anterior (<b>incoming</b>).</br>
+                            Esta función es la encargada de enviar a los usuarios los datos actualizados, es decir, el número de usuario que se encuentran conectados al servidor y las figuras
+                            que forman parte del dibujo en el que todos ellos están colaborando.
+                        </p>
+                        <div class="functions">
+                            <figure>
+                                <img src="./images/websockets_server_incoming_function.JPG"
+                                    alt="Servidor - Función 'incoming'" />
+                                <figcaption>Servidor - Función <b>incoming</b></figcaption>
+                            </figure>
+                            <figure>
+                                <img src="./images/websockets_server_broadcast_function.JPG"
+                                    alt="Servidor - Función 'broadcast'" />
+                                <figcaption>Servidor - Función <b>broadcast</b></figcaption>
+                            </figure>
+                        </div>
                     </section>
                     <section>
                         <h4>Desarrollo del cliente</h4>
