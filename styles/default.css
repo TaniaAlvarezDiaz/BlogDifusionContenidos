@@ -69,6 +69,7 @@ html {
 #content a {
     text-decoration: none;
     color: #004961;
+    font-weight: bold;
 }
 
 #content h2 {
@@ -77,6 +78,14 @@ html {
 
 #content h1, h2, h3, h4, figcaption {
     color: #004961;
+}
+
+#content figcaption {
+    font-style: italic;
+}
+
+.center {
+    text-align: center;
 }
 
 #footer > a {

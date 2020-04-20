@@ -51,13 +51,24 @@
                         </p>
                         <p>En cuanto a las variables, se guardan los usuarios que se conectan al servidor, así como las figuras que éstos crean en el canvas.</p>
                         <p>Respecto a las funciones, a continuación se explican las que se consideran más importantes.</p>
-                        <p>La función <b>incoming</b> se ejecuta cuando el servidor recibe un mensaje de un cliente. En ella, se comprueba el tipo de mensaje que llega (plano o JSON).</br>
-                            En el caso de que llegue un objeto JSON (una figura), se guarda en la lista de figuras.
+                        <p>
+                            La función <b>incoming</b> se ejecuta cuando el servidor recibe un mensaje de un cliente y se encarga de comprobar el tipo de mensaje que llega (plano o JSON).
+                            En el caso de que llegue un objeto JSON (una figura), se guarda ésta en la lista de figuras.
                         </p>
                         <p>
                             La función <b>broadcast</b> es llamada por la función anterior (<b>incoming</b>).</br>
-                            Esta función es la encargada de enviar a los usuarios los datos actualizados, es decir, el número de usuario que se encuentran conectados al servidor y las figuras
-                            que forman parte del dibujo en el que todos ellos están colaborando.
+                            Esta función es la encargada de enviar a los usuarios los datos actualizados, es decir, el número de usuarios que se encuentran conectados al servidor y las figuras
+                            que forman parte del dibujo en el que todos ellos están colaborando.</br>
+                            <ul>
+                                <li>
+                                    En el caso de que se haya conectado un nuevo usuario:
+                                    <ul>
+                                        <li>Se le envían todas las figuras creadas hasta el momento en el dibujo.</li>
+                                        <li>Se le notifica al resto de usuarios de su presencia.</li>
+                                    </ul>
+                                </li>
+                                <li>En el caso de que un usuario haya añadido una nueva figura, se envía ésta al resto de los usuarios.</li>
+                            </ul>
                         </p>
                         <div class="functions">
                             <figure>
@@ -74,15 +85,73 @@
                     </section>
                     <section>
                         <h4>Desarrollo del cliente</h4>
+                        <p>
+                            Para desarrollar el cliente se ha utilizado HTML, CSS y Javascript. Por tanto, el proyecto está formado por tres ficheros:
+                            <ul>
+                                <li>
+                                    <b>Index.html</b>: fichero HTML que representa la vista del cliente (canvas y botones para crear figuras).</br>
+                                    Se ha utilizado la librería <a href="http://fabricjs.com/">Fabric.js</a> (Javascript Canvas Library) para crear el
+                                    canvas y las figuras (círculo, rectángulo y triángulo) que se pueden dibujar en él.
+                                    <div class="functions">
+                                        <figure>
+                                            <img src="./images/websockets_client_canvas.JPG"
+                                                alt="Vista del cliente" />
+                                            <figcaption>Vista del cliente</figcaption>
+                                        </figure>
+                                        <figure>
+                                            <img src="./images/websockets_client_index.JPG"
+                                                alt="Código de la vista del cliente" />
+                                            <figcaption>Código de la vista del cliente</figcaption>
+                                        </figure>
+                                    </div>
+                                </li>
+                                <li><b>Style.css</b>: fichero CSS que contiene los estilos que se aplican a los elementos del fichero HTML.</li>
+                                <li>
+                                    <b>Script.js</b>: fichero Javascript donde se encuentra la implementación (lógica) del cliente, es decir, las funciones necesarias para 
+                                    crear las figuras, comunicarse con el servidor, etc.
+                                </li>
+                            </ul>
+                        </p>
+                        <p>A continuación, se explican las funciones más importantes del fichero <b>script.js</b>.</p>
+                        <p>
+                            La función <b>onMessageFromServer</b> se ejecuta cuando el cliente recibe un mensaje del servidor. Esta función actualiza el número de usuarios y/o
+                            los objetos del canvas.
+                        </p>
+                        <figure class="center">
+                            <img src="./images/websockets_client_onMessageFromServer_function.JPG"
+                                alt="Cliente - Función 'onMessageFromServer'" />
+                            <figcaption>Cliente - Función <b>onMessageFromServer</b></figcaption>
+                        </figure>
+                        <p>
+                            La función <b>addObject</b> es llamada por la función <b>onMessageFromServer</b> y se encarga de crear, a través de la librería Fabric.js, la figura
+                            correspondiente en función del tipo que recibe por parámetro.
+                        </p>
+                        <figure class="center">
+                            <img src="./images/websockets_client_addObject_function.JPG"
+                                alt="Cliente - Función 'addObject'" />
+                            <figcaption>Cliente - Función <b>addObject</b></figcaption>
+                        </figure>
                     </section>
                 </article>
                 <article>
                     <h3>Ejecución</h3>
-                
+                    <p>Para poder ejecutar la aplicación es necesario arrancar el servidor y ejecutar uno o varios clientes.</p>
+                    <p>Por un lado, para arrancar el servidor, se debe ejecutar la consola de <b>Node.js</b> y acceder a la ruta del servidor. Una vez ahí, se debe ejecutar el comando <b>node server.js</b>.</p>
+                    <p>
+                        Por otro lado, para ejecutar el cliente, se debe abrir el fichero <b>index.html</b> en el navegador Google Chrome. En el caso de que se necesite ejecutar más de un cliente, 
+                        se deben abrir en el navegador tantas pestañas como clientes se deseen.
+                    </p>
                 </article>
                 <article>
                     <h3>Despliegue</h3>
-                    
+                    <p>
+                        El código de esta aplicación se puede encontrar en el <a href="https://github.com/TaniaAlvarezDiaz/DibujoColaborativoWebSockets">GitHub</a> de la autora, así como el código
+                        del <a href="https://github.com/TaniaAlvarezDiaz/DibujoColaborativoWebSocketsServidor">servidor</a> y del <a href="https://github.com/TaniaAlvarezDiaz/DibujoColaborativoWebSocketsCliente">cliente</a>.
+                    </p>
+                    <p>
+                        Adicionalmente, se ha creado una <a href="https://taniaalvarezdiaz.github.io/SlidesDibujoColaborativoWebSockets">presentación</a> (resumen de esta entrada del blog) con el framework <b>Reveal.js</b> cuyo 
+                        código se puede encontrar en este <a href="https://github.com/TaniaAlvarezDiaz/SlidesDibujoColaborativoWebSockets">enlace</a>.
+                    </p>
                 </article>
             </section>
         </main>
