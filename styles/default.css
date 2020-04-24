@@ -82,6 +82,7 @@ html {
 
 #content figcaption {
     font-style: italic;
+    text-align: center;
 }
 
 .center {

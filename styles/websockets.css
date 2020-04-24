@@ -17,10 +17,6 @@
     width: 100%;
 }
 
-figcaption {
-    text-align: center;
-}
-
 @media screen and (max-width: 1050px) {
     .functions {
         grid-template-columns: repeat(1, 1fr);
