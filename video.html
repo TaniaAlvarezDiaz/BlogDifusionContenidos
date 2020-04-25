@@ -6,6 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" media="screen" type="text/css" href="./styles/default.css">
         <link rel="stylesheet" media="screen" type="text/css" href="./styles/video.css">
+
+         <!-- Load icon library -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+         <!-- Load javascript files-->
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <script src="./scripts/default.js"></script>
+
         <title>Blog</title>
     </head>
 
@@ -28,7 +36,11 @@
                     <video src="./videos/la_descarga_2019.mp4" controls></video>
                     <figcaption>La Descarga 2019</figcaption>
                 </figure>
-           </section>            
+           </section>    
+           <section>
+            <h2 hidden>Opciones</h2>
+            <button id="upButton" type="button" onclick="scrollUp()"><i class="fas fa-chevron-up"></i></button>
+        </section>        
         </main>
     
         <footer id="footer">

@@ -12,6 +12,7 @@
 
         <!-- Load javascript files-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./scripts/default.js"></script>
         <script src="./scripts/webrtc.js"></script>
 
         <title>Blog</title>
@@ -34,10 +35,7 @@
                 <h2>Aplicación de videochat con WebRTC</h2>
                 <article>
                     <h3>Introducción</h3>
-                    <p>
-						El proyecto consiste en el desarrollo de una aplicación de videochat utilizando <a href="https://webrtc.org/">WebRTC</a>.<br/>
-						Esta aplicación consta de:
-                    </p>
+                    <p>El proyecto consiste en el desarrollo de una aplicación de videochat utilizando <a href="https://webrtc.org/">WebRTC</a>. Esta aplicación consta de:</p>
                     <ul>
                         <li><b>Servidor</b>: encargado de gestionar las conexiones de los usuarios.
                         <li><b>Cliente</b>: permite a los usuarios conectarse al servidor y realizar el intercambio de vídeo y mensajes de chat con el resto de usuarios conectados al servidor (usando el nombre de dicho usuario).</li>
@@ -60,7 +58,7 @@
                             <li><b>express</b>: framework web para Node.js.</li>
                         </ul>
                         <p>
-                            A continuación, se ha creado el fichero <b>server.js</b> dentro de la carpeta <b>WebRTCServer</b>.<br/>
+                            A continuación, se ha creado el fichero <b>server.js</b> dentro de la carpeta <b>WebRTCServer</b>. 
                             Este fichero contiene la implementación del servidor, es decir, las variables y funciones necesarias para que éste realice su funcionalidad.
                         </p>
                         <p>Respecto a las funciones, a continuación se explican las que se consideran más importantes.</p>
@@ -69,7 +67,7 @@
                             <li>El evento <b>connection</b> se produce cuando se establece la conexión entre el cliente y el servidor.</li>
                             <li>El evento <b>close</b> se produce cuando uno de los usuarios solicita cerrar la conexión con otro usuario, es decir, en este caso cuando se cuelga la llamada.</li>
                             <li>
-                                El evento <b>message</b> se produce cuando el servidor recibe un mensaje del cliente a través de la conexión establecida.<br/>
+                                El evento <b>message</b> se produce cuando el servidor recibe un mensaje del cliente a través de la conexión establecida. 
                                 En función del tipo de mensaje se producen distintas acciones:
                                 <ul>
                                     <li><b>Login</b>: los clientes se registran en el servidor (username único).</li>
@@ -94,7 +92,7 @@
                         <p>Para desarrollar el cliente se ha utilizado HTML, CSS y Javascript. Por tanto, el proyecto está formado por tres ficheros:</p>
                         <ul>
                             <li>
-                                <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).<br/>
+                                <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).
                             </li>
                             <li><b>Style.css</b>: fichero CSS que contiene los estilos que se aplican a los elementos del fichero HTML.</li>
                             <li>
@@ -103,9 +101,46 @@
                             </li>
                         </ul>
                         <p>A continuación, se explican las funciones más importantes del fichero <b>script.js</b>.</p>
-                       
-    
-                        
+                        <p>
+                            La función <b>onLogin</b> se produce cuando el servidor responde ante la pulsación del usuario al botón <b>start</b>. 
+                            En el caso de que el usuario solicite iniciar sesión con un nombre de usuario existente, el servidor indica que no se puede producir el registro y se muestra un mensaje al usuario. 
+                            En caso contrario, es decir, no existe un usuario con ese nombre y por tanto el servidor realiza el registro, se deshabilita el botón <b>start</b> y se crea un objeto <b>MediaStrema</b> 
+                            que permite mostrar el vídeo donde se visualiza lo que la cámara del usuario está grabando en ese instante. 
+                            Adicionalmente, se habilita el botón <b>call</b> con el fin de que el usuario pueda realizar una llamada a otro usuario registrado cuyo nombre coincide con el texto que escribe en el campo de texto que se encuentra al lado de dicho botón.
+                        </p>
+                        <figure class="center">
+                            <img src="./images/webrtc_client_onLogin_function.JPG" alt="Cliente - Función 'onLogin'" />
+                            <figcaption>Cliente - Función <b>onLogin</b></figcaption>
+                        </figure>
+                        <p>
+                            La función <b>call</b> se llama cuando el usuario pulsa el botón de llamar. Ésta llama a la función <b>startingCallCommunication()</b> para 
+                            establecer la conexión, y tras ello, enviar una oferta de conexión al usuario destino.
+                        </p> 
+                        <figure class="center">
+                            <img src="./images/webrtc_client_call_function.JPG" alt="Cliente - Función 'call'" />
+                            <figcaption>Cliente - Función <b>call</b></figcaption>
+                        </figure>
+                        <p>
+                            La función <b>startingCallCommunication</b> establece una comunicación entre los usuarios local y remoto, con el fin de que puedar realizar una videollamada. 
+                            Adicionalmente, crea un canal de datos para que los usuario se puedan intercambiar mensajes a través del chat.
+                        </p>
+                        <figure class="center">
+                            <img src="./images/webrtc_client_startingCallCommunication_function.JPG" alt="Cliente - Función 'startingCallCommunication'" />
+                            <figcaption>Cliente - Función <b>startingCallCommunication</b></figcaption>
+                        </figure>
+                        <p>La función <b>handleDataChannel</b> detecta distintos eventos del canal de datos:</p>
+                        <ul>
+                            <li><b>On open</b>: evento que se produce al abrir el canal de datos. En este caso, habilita el campo y el botón para enviar mensajes.</li>
+                            <li><b>On message</b>: evento que se produce cuando se envía un mensaje a través del canal de datos. En este caso, añade el mensaje recibido al chat.</li>
+                            <li>
+                                <b>On close</b>: evento que se produce cuando se cierra el canal de datos. En este caso, se deshabilita el campo y el botón para enviar mensajes, ya que si un usuario 
+                                ha colgado la llamada, ya no se le pueden enviar más mensajes.
+                            </li>
+                        </ul>
+                        <figure class="center">
+                            <img src="./images/webrtc_client_handleDataChannel_function.JPG" alt="Cliente - Función 'handleDataChannel'" />
+                            <figcaption>Cliente - Función <b>handleDataChannel</b></figcaption>
+                        </figure>
                     </section>
                 </article>
                 <article>
@@ -113,8 +148,8 @@
                     <p>Para poder ejecutar la aplicación es necesario arrancar el servidor y ejecutar dos clientes.</p>
                     <p>Por un lado, para arrancar el servidor, se debe ejecutar la consola de <b>Node.js</b> y acceder a la ruta del servidor. Una vez ahí, se debe ejecutar el comando <b>node server.js</b>.</p>
                     <p>
-                        Por otro lado, para ejecutar el cliente, se debe introducir éste en la carpeta <b>htdocs</b> de XAMPP. <br/>
-                        Seguidamente, se debe arrancar el servicio <b>Apache</b> de XAMPP.<br/>
+                        Por otro lado, para ejecutar el cliente, se debe introducir éste en la carpeta <b>htdocs</b> de XAMPP. 
+                        Seguidamente, se debe arrancar el servicio <b>Apache</b> de XAMPP.
                         A continuación, se deben abrir en el navegador Chrome dos instancias del cliente. Para ello se debe ejecutar <b>localhost/NOMBRE_CLIENTE</b>, donde NOMBRE_CLIENTE es el nombre de la carpeta 
                         donde se encuentran los archivos del cliente (carpeta dentro de <b>htdocs</b>).
                     </p>
@@ -130,6 +165,10 @@
                         código se puede encontrar en este <a href="https://github.com/TaniaAlvarezDiaz/SlidesVideochatWebRTC">enlace</a>.
                     </p>
                 </article>
+            </section>
+            <section>
+                <h2 hidden>Opciones</h2>
+                <button id="upButton" type="button" onclick="scrollUp()"><i class="fas fa-chevron-up"></i></button>
             </section>
         </main>
 

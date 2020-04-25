@@ -5,21 +5,32 @@
  }
 
 #carrusel > button {
-    background: transparent;
+    background: gainsboro;
     border: none;
 }
 
 #image {
-     width: 50%;
-     height: 400px;
+     width: 60%;
+     height: 350px;
      background-size: cover;
      background-size: 100% 100%;
      background-repeat:no-repeat;
  }
 
-
 @media screen and (max-width: 800px) {
     figure.center > img {
         width: 80%;
     } 
+}
+
+@media screen and (max-width: 400px) {
+    #image {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #image {
+        height: 150px;
+    }
 }
