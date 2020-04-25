@@ -41,11 +41,19 @@
     }
 }
 
-@media screen and (max-width: 450px) {
-
+@media screen and (max-width: 800px) {
     figure.center > img {
         width: 80%;
     } 
+}
+
+@media screen and (max-width: 600px) {
+    .functions img {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 450px) {
 
     .functions img {
         height: 130px;

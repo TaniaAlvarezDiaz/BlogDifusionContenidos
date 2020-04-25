@@ -27,7 +27,7 @@
                 <article>
                     <h3>Introducción</h3>
                     <p>
-						El proyecto consiste en el desarrollo de una aplicación de videochat utilizando <a href="https://webrtc.org/">WebRTC</a>.</br>
+						El proyecto consiste en el desarrollo de una aplicación de videochat utilizando <a href="https://webrtc.org/">WebRTC</a>.<br/>
 						Esta aplicación consta de:
 						<ul>
 							<li><b>Servidor</b>: encargado de gestionar las conexiones de los usuarios.
@@ -53,7 +53,7 @@
                                 <li><b>ws</b>: biblioteca de WebSockets para proporcionar un canal de comunicación bidireccional entre cliente y servidor.</li>
                                 <li><b>express</b>: framework web para Node.js.</li>
                             </ul>
-                            A continuación, se ha creado el fichero <b>server.js</b> dentro de la carpeta <b>WebRTCServer</b>.</br>
+                            A continuación, se ha creado el fichero <b>server.js</b> dentro de la carpeta <b>WebRTCServer</b>.<br/>
                             Este fichero contiene la implementación del servidor, es decir, las variables y funciones necesarias para que éste realice su funcionalidad.
                         </p>
                         
@@ -64,7 +64,7 @@
                             Para desarrollar el cliente se ha utilizado HTML, CSS y Javascript. Por tanto, el proyecto está formado por tres ficheros:
                             <ul>
                                 <li>
-                                    <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).</br>
+                                    <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).<br/>
                                 </li>
                                 <li><b>Style.css</b>: fichero CSS que contiene los estilos que se aplican a los elementos del fichero HTML.</li>
                                 <li>
@@ -75,8 +75,18 @@
                         </p>
                         <p>A continuación, se explican las funciones más importantes del fichero <b>script.js</b>.</p>
                         <p>
-                            
+                            El servidor WebSocket cuenta con varias funciones que se ejecutan en función del tipo de evento que se produza.
+                            <ul>
+                                <li>El evento <b>connection</b> se produce cuando se establece la conexión entre el cliente y el servidor.</li>
+                                <li>
+                                    El evento <b>message</b> se produce cuando el servidor recibe un mensaje del cliente a través de la conexión establecida.<br/>
+                                    En función del tipo de mensaje se producen distintas acciones.
+                                </li>
+                            </ul>
                         </p>
+
+                       
+                        
                         <figure class="center">
                             <img src="./images/websockets_client_onMessageFromServer_function.JPG"
                                 alt="Cliente - Función 'onMessageFromServer'" />
@@ -90,8 +100,8 @@
                     <p>Para poder ejecutar la aplicación es necesario arrancar el servidor y ejecutar dos clientes.</p>
                     <p>Por un lado, para arrancar el servidor, se debe ejecutar la consola de <b>Node.js</b> y acceder a la ruta del servidor. Una vez ahí, se debe ejecutar el comando <b>node server.js</b>.</p>
                     <p>
-                        Por otro lado, para ejecutar el cliente, se debe introducir éste en la carpeta <b>htdocs</b> de XAMPP. </br>
-                        Seguidamente, se debe arrancar el servicio <b>Apache</b> de XAMPP.</br>
+                        Por otro lado, para ejecutar el cliente, se debe introducir éste en la carpeta <b>htdocs</b> de XAMPP. <br/>
+                        Seguidamente, se debe arrancar el servicio <b>Apache</b> de XAMPP.<br/>
                         A continuación, se deben abrir en el navegador Chrome dos instancias del cliente. Para ello se debe ejecutar <b>localhost/NOMBRE_CLIENTE</b>, donde NOMBRE_CLIENTE es el nombre de la carpeta 
                         donde se encuentran los archivos del cliente (carpeta dentro de <b>htdocs</b>).
                     </p>
