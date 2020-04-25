@@ -102,6 +102,12 @@ html {
     text-align: center;
 }
 
+@media screen and (max-width:450px) {
+    figcaption {
+        font-size: small;
+    }
+}
+
 @media screen and (max-width:350px) {
 
     #navigation > a {

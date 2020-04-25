@@ -6,6 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" media="screen" type="text/css" href="./styles/default.css">
         <link rel="stylesheet" media="screen" type="text/css" href="./styles/webrtc.css">
+
+        <!-- Load icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+        <!-- Load javascript files-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./scripts/webrtc.js"></script>
+
         <title>Blog</title>
     </head>
 
@@ -29,69 +37,74 @@
                     <p>
 						El proyecto consiste en el desarrollo de una aplicación de videochat utilizando <a href="https://webrtc.org/">WebRTC</a>.<br/>
 						Esta aplicación consta de:
-						<ul>
-							<li><b>Servidor</b>: encargado de gestionar las conexiones de los usuarios.
-							<li><b>Cliente</b>: permite a los usuarios conectarse al servidor y realizar el intercambio de vídeo y mensajes de chat con el resto de usuarios conectados al servidor (usando el nombre de dicho usuario).</li>
-						</ul>
-					</p>
+                    </p>
+                    <ul>
+                        <li><b>Servidor</b>: encargado de gestionar las conexiones de los usuarios.
+                        <li><b>Cliente</b>: permite a los usuarios conectarse al servidor y realizar el intercambio de vídeo y mensajes de chat con el resto de usuarios conectados al servidor (usando el nombre de dicho usuario).</li>
+                    </ul>
                 </article>
                 <article>
                     <h3>Desarrollo</h3>
                     <p>Para desarrollar tanto el cliente como el servidor se ha utilizado <a href="https://code.visualstudio.com/">Visual Studio Code.</a> Adicionalmente, se ha utilizado <a href="https://www.apachefriends.org/es/index.html">XAMPP</a>
                         para desplegar a los clientes y <a href="https://nodejs.org/es/">Node.js</a> para instalar y ejecutar el servidor.</p>
-                    <p>Para instalar el servidor se ha creado la carpeta <b>DrawingServer</b> y desde la consola de Node.js se ha accedido a ella y se ha ejecutado el comando <b>npm init</b>.</p>
+                    <p>Para instalar el servidor se ha creado la carpeta <b>WebRTCServer</b> y desde la consola de Node.js se ha accedido a ella y se ha ejecutado el comando <b>npm init</b>.</p>
                     <figure class="center">
-                        <img src="./images/webrtc_server_installation.JPG"
-                            alt="Instalación del servidor con Node.js" />
+                        <img src="./images/webrtc_server_installation.JPG" alt="Instalación del servidor con Node.js" />
                         <figcaption>Instalación del servidor con Node.js</figcaption>
                     </figure>
                     <section>
                         <h4>Desarrollo del servidor</h4>
+                        <p>Tras instalar el servidor en Node.js, se han instalado, con el comando <b>npm install NOMBRE_PAQUETE</b>, dos paquetes:</p>
+                        <ul>
+                            <li><b>ws</b>: biblioteca de WebSockets para proporcionar un canal de comunicación bidireccional entre cliente y servidor.</li>
+                            <li><b>express</b>: framework web para Node.js.</li>
+                        </ul>
                         <p>
-                            Tras instalar el servidor en Node.js, se han instalado, con el comando <b>npm install NOMBRE_PAQUETE</b>, dos paquetes:
-                            <ul>
-                                <li><b>ws</b>: biblioteca de WebSockets para proporcionar un canal de comunicación bidireccional entre cliente y servidor.</li>
-                                <li><b>express</b>: framework web para Node.js.</li>
-                            </ul>
                             A continuación, se ha creado el fichero <b>server.js</b> dentro de la carpeta <b>WebRTCServer</b>.<br/>
                             Este fichero contiene la implementación del servidor, es decir, las variables y funciones necesarias para que éste realice su funcionalidad.
                         </p>
-                        
+                        <p>Respecto a las funciones, a continuación se explican las que se consideran más importantes.</p>
+                        <p>El servidor WebSocket cuenta con varias funciones que se ejecutan en función del tipo de evento que se produza.</p>
+                        <ul>
+                            <li>El evento <b>connection</b> se produce cuando se establece la conexión entre el cliente y el servidor.</li>
+                            <li>El evento <b>close</b> se produce cuando uno de los usuarios solicita cerrar la conexión con otro usuario, es decir, en este caso cuando se cuelga la llamada.</li>
+                            <li>
+                                El evento <b>message</b> se produce cuando el servidor recibe un mensaje del cliente a través de la conexión establecida.<br/>
+                                En función del tipo de mensaje se producen distintas acciones:
+                                <ul>
+                                    <li><b>Login</b>: los clientes se registran en el servidor (username único).</li>
+                                    <li><b>Offer</b>: oferta de conexión que desea hacer un cliente a otro (ambos registrados en el sistema).</li>
+                                    <li><b>Answer</b>: respuesta de un cliente a la oferta de conexión.</li>
+                                    <li><b>Candidate</b>: candidato que se envía si la oferta de conexión ha sido aceptada.</li>
+                                    <li><b>Leave</b>: uno de los clientes abandona la conexión.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <figure class="center">
+                            <div id="carrusel">
+                                <button id="previousButton" type="button"><i class="fas fa-chevron-left"></i></button>
+                                <img id="image"></img>
+                                <button id="nextButton" type="button"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <figcaption id="figcaptionCarrusel"></figcaption>
+                        </figure>
                     </section>
                     <section>
                         <h4>Desarrollo del cliente</h4>
-                        <p>
-                            Para desarrollar el cliente se ha utilizado HTML, CSS y Javascript. Por tanto, el proyecto está formado por tres ficheros:
-                            <ul>
-                                <li>
-                                    <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).<br/>
-                                </li>
-                                <li><b>Style.css</b>: fichero CSS que contiene los estilos que se aplican a los elementos del fichero HTML.</li>
-                                <li>
-                                    <b>Script.js</b>: fichero Javascript donde se encuentra la implementación (lógica) del cliente, es decir, las funciones necesarias para 
-                                    comunicarse con el servidor, intercambiar mensajes con otros usuarios, etc.
-                                </li>
-                            </ul>
-                        </p>
+                        <p>Para desarrollar el cliente se ha utilizado HTML, CSS y Javascript. Por tanto, el proyecto está formado por tres ficheros:</p>
+                        <ul>
+                            <li>
+                                <b>Index.html</b>: fichero HTML que representa la vista del cliente (botones, vídeos y chat).<br/>
+                            </li>
+                            <li><b>Style.css</b>: fichero CSS que contiene los estilos que se aplican a los elementos del fichero HTML.</li>
+                            <li>
+                                <b>Script.js</b>: fichero Javascript donde se encuentra la implementación (lógica) del cliente, es decir, las funciones necesarias para 
+                                comunicarse con el servidor, intercambiar mensajes con otros usuarios, etc.
+                            </li>
+                        </ul>
                         <p>A continuación, se explican las funciones más importantes del fichero <b>script.js</b>.</p>
-                        <p>
-                            El servidor WebSocket cuenta con varias funciones que se ejecutan en función del tipo de evento que se produza.
-                            <ul>
-                                <li>El evento <b>connection</b> se produce cuando se establece la conexión entre el cliente y el servidor.</li>
-                                <li>
-                                    El evento <b>message</b> se produce cuando el servidor recibe un mensaje del cliente a través de la conexión establecida.<br/>
-                                    En función del tipo de mensaje se producen distintas acciones.
-                                </li>
-                            </ul>
-                        </p>
-
                        
-                        
-                        <figure class="center">
-                            <img src="./images/websockets_client_onMessageFromServer_function.JPG"
-                                alt="Cliente - Función 'onMessageFromServer'" />
-                            <figcaption>Cliente - Función <b>onMessageFromServer</b></figcaption>
-                        </figure>
+    
                         
                     </section>
                 </article>
