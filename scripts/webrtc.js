@@ -50,7 +50,7 @@ window.onload = function() {
             previousButton.style.visibility = 'visible'
         }
 
-        //If las position, disable nextButton
+        //If last position, disable nextButton
         if (currentPosition >= IMAGES.length - 1) {
             nextButton.style.visibility = 'hidden';
         }

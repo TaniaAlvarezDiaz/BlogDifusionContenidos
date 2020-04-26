@@ -3,6 +3,10 @@ html {
     margin:0 auto;
 }
 
+a {
+    text-decoration: none;
+}
+
 #wrapper {
     font-family: 'Source Sans Pro', serif;
     display: grid;
@@ -25,6 +29,10 @@ html {
     font-size: 100%;
 }
 
+#header a {
+    color: white;
+}
+
 #navigation {
     background-color: gainsboro;
     grid-area: navigation;
@@ -36,7 +44,6 @@ html {
     padding: 5px;
     font-size: 100%;
     font-weight: bold;
-    text-decoration: none;
 }
 
 #navigation > a:link {
@@ -67,7 +74,6 @@ html {
 }
 
 #content a {
-    text-decoration: none;
     color: #004961;
     font-weight: bold;
 }
@@ -95,7 +101,6 @@ html {
 
 #footer > a {
     color: white;
-    text-decoration: none;
 }
 
 #footer > a:hover, a:active {

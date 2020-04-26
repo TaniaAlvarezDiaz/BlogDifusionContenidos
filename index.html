@@ -19,7 +19,7 @@
 
     <body id="wrapper">
         <header id="header">
-            <h1>Blog de difusión de contenidos</h1>
+            <h1><a href="index.html">Blog de difusión de contenidos</a></h1>
         </header>
 
         <nav id="navigation">
@@ -31,7 +31,75 @@
 
         <main id="content">
             <section>
-                
+                <h2>Blog de difusión de contenidos</h2>
+                <article>
+                    <h3>Introducción</h3>
+                    <p>El presente blog se ha desarrollado para la asignatura <b>Difusión de contenidos multimedia vía web</b> del Máster en Ingeniería Web de la Universidad de Oviedo.</p>
+                    <p>La finalidad de este blog es mostrar el proceso de desarrollo de los distintos ejercicios de la asignatura. Para cada uno de ellos se ha creado una entrada en este blog.</p>
+                    <p>Los ejercicios realizados, además de este blog, son:</p>
+                    <ul>
+                        <li><b>WebSockets</b>: una aplicación de dibujo colaborativo con WebSockets, donde los usuarios puede dibujar figuras y compartirlas con el resto de usuarios.</li>
+                        <li><b>WebRTC</b>: aplicación de videochat utilizando WebRTC. Esta aplicación permite a los usuarios registrados hacer videollamadas entre ellos, así como enviarse mensajes.</li>
+                        <li><b>Vídeo grupal</b>: vídeo realizado con tres compañeros de la asignatura. Consiste en un telediario donde se muestran distintas secciones con noticias graciosas.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Desarrollo</h3>
+                    <p>Para desarrollar este blog se han utilizado las tecnologías HTML, CSS y JavaScript.</p>
+                    <p>
+                        Adicionalmente, se ha utilizado la librería <b><a href="https://fontawesome.com/">Font Awesone</a></b> para mostrar los iconos de algunas de las acciones del sitio web, por ejemplo, los botones de la galería de imágenes 
+                        que se puede ver en la entrada <b>WebRTC</b>, o el botón que aparece en todas las entradas encima del <i>footer</i> que permite hacer <i>scroll</i> al inicio de la página.
+                    </p>
+                    <p>En cuanto a la estructura de las páginas se ha utilizado <b>grid layout</b> que, junto con las <b>media queries</b>, ha ayudado a favorecer la experiencia de usuario, generando pantallas responsivas, etc.</p>
+                    <p>Este blog tiene un esquema general que contiene:</p>
+                    <ul>
+                        <li><b>Encabezado</b>: muestra el nombre del blog.</li>
+                        <li><b>Barra de navegación</b>: muestra las distintas entradas del blog y proporciona acceso a ellas.</li>
+                        <li><b>Cuerpo</b>: contenido asociado a una entrada.</li>
+                        <li><b>Pie de página</b>: muestra el nombre de la autora (proporciona enlace a su correo electrónico) y el nombre de la asignura para la cual se ha creado este blog.</li>
+                    </ul>
+                    <p>Este esquema se puede observar, además de en los archivos HTML, en el fichero <b>default.css</b>.</p>
+                    <figure class="center">
+                        <img src="./images/blog_general_structure.JPG"
+                            alt="Esquema general del blog (default.css)" />
+                        <figcaption>Esquema general del blog (default.css)</figcaption>
+                    </figure>
+                    <p>
+                        Además de utilizar <b>grid layout</b> para el esquema general del blog, se ha usado en la entrada <b>WebSockets</b> para colocar algunas imágenes en paralelo (sólo en pantallas con resuloción superior a 1050px).  
+                        Esta estructura se puede ver en el fichero <b>websockets.css</b>, así como las <i>media queries</i> correspondientes.
+                    </p>
+                    <figure class="center">
+                        <img src="./images/blog_websockets_grid.JPG"
+                            alt="Grid layout en la entrada WebSockets" />
+                        <figcaption>Grid layout en la entrada WebSockets</figcaption>
+                    </figure>
+                    <p>Por otro lado, en la entrada <b>WebRTC</b> se ha añadido una galería de imágenes para mostrar los distintos tipos de mensajes que se pueden producir cuando un cliente se comunica con el servidor.</p>
+                    <p>Esta galería de imágenes está formada por un componente <b>img</b> en donde se carga dinámicamente la imagen correspondiente; y dos botones, uno que permite visualizar la imagen anterior a la actual y otro para visualizar la imagen posterior a la actual.</p>
+                    <p>
+                        En el fichero <b>webrtc.css</b> se puede ver que para conseguir que los botones se muestren alineados (verticalmente y horizontalmente) con la imagen, se ha usado la propiedad <b>display: flex</b>. 
+                        También se puede ver que se utilizan las propiedades <b>background-size</b> y <b>backgorund-repeat</b> para hacer que la imagen que se carga dinámicamente ocupe todo el espacio del componente donde se introduce.
+                    </p>
+                    <figure class="center">
+                        <img src="./images/blog_webrtc_carrusel.JPG"
+                            alt="Galería de imágenes en la entrada WebRTC (webrtc.css)" />
+                        <figcaption>Galería de imágenes en la entrada WebRTC (webrtc.css)</figcaption>
+                    </figure>
+                    <p>En el fichero <b>webrtc.js</b> se encuentran las constantes, variables y las funciones necesarias para cargar las imágenes dinámicamente en la galería y para ofrecer funcionalidad a los dos botones de ésta.</p>
+                    <p>Las funciones son tres:</p>
+                    <ul>
+                        <li><b>nextImage</b>: modifica la imagen actual por la siguiente. En el caso de que, tras cambiar la imagen, la imagen actual sea la última de la galería, se oculta el botón que se encuentra a la derecha de la imagen.</li>
+                        <li><b>backImage</b>: modifica la imagen actual por la anterior. En el caso de que, tras cambiar la imagen, la imagen actual sea la primera de la galería, se oculta el botón que se encuentra a la izquierda de la imagen.</li>
+                        <li><b>renderImage</b>: modifica la imagen, así como el pie de foto asociado a ella, en función de la posición actual.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Despliegue</h3>
+                    <p>El código de este blog se puede encontrar en el <a href="https://github.com/TaniaAlvarezDiaz/BlogDifusionContenidos">GitHub</a> de la autora.</p>
+                    <p>
+                        Adicionalmente, se ha creado una <a href="https://taniaalvarezdiaz.github.io/SlidesBlogDifusionContenidos">presentación</a> (ampliación de esta entrada del blog) con el framework <b>Reveal.js</b> cuyo 
+                        código se puede encontrar en este <a href="https://github.com/TaniaAlvarezDiaz/SlidesBlogDifusionContenidos">enlace</a>.
+                    </p>
+                </article>                
             </section>
             <section>
                 <h2 hidden>Opciones</h2>
